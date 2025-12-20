@@ -1,23 +1,22 @@
 {
-  "name": "nextjs-template",
-  "version": "0.1.0",
+  "name": "deep-work-tracker",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "A modern Next.js project template for building fast, user-friendly web applications with React.",
+  "description": "Deep Work Tracker: Optimize your productivity with focused work sessions.",
   "keywords": [
-    "nextjs template",
-    "react template",
-    "web development",
-    "frontend boilerplate",
-    "nextjs starter",
-    "react starter",
-    "modern web apps",
-    "developer tools"
+    "productivity",
+    "deep work",
+    "time tracking",
+    "focus",
+    "nextjs",
+    "react",
+    "web application"
   ],
-  "homepage": "https://github.com/yungKillaGit/nextjs-template#readme",
+  "homepage": "https://deep-work.vercel.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yungKillaGit/nextjs-template.git"
+    "url": "https://github.com/yungKillaGit/deep-work"
   },
   "license": "MIT",
   "volta": {
