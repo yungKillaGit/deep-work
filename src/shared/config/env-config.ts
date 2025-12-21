@@ -8,3 +8,5 @@ export const description =
 export const baseURL = process.env.NEXT_PUBLIC_URL || 'https://your-domain.com';
 
 export const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '';
+
+export const databaseUrl = process.env.DATABASE_URL;

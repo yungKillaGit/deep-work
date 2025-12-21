@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/shared/lib/prisma/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id       String   @id @default(uuid())
+  email    String   @unique
+  name     String?
+  workIntervals WorkInterval[]
+  goals    DailyGoal[]
+  progress DailyProgress[]
+}
+
+model WorkInterval {
+  id          String   @id @default(uuid())
+  start_time  DateTime
+  end_time    DateTime?
+  duration    Int
+  is_completed Boolean  @default(false)
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+}
+
+model DailyGoal {
+  id           String   @id @default(uuid())
+  date         DateTime @unique
+  goal_minutes Int
+  userId       String
+  user         User      @relation(fields: [userId], references: [id])
+}
+
+model DailyProgress {
+  id            String   @id @default(uuid())
+  date          DateTime @unique
+  total_minutes Int
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+}
