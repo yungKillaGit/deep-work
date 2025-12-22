@@ -1,4 +1,4 @@
-import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core';
+import { ColorSchemeScript, createTheme, mantineHtmlProps, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
@@ -54,6 +54,10 @@ export const metadata: Metadata = {
   },
 };
 
+const theme = createTheme({
+  primaryColor: 'blue',
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -65,7 +69,7 @@ export default function RootLayout({
         <ColorSchemeScript defaultColorScheme="dark" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <MantineProvider defaultColorScheme="dark">
+        <MantineProvider theme={theme} defaultColorScheme="dark">
           {children}
           <SpeedInsights />
         </MantineProvider>
