@@ -1,3 +1,4 @@
+'use server';
 import { createClient } from '~/shared/lib/supabase/server';
 import type { LoginFormValues } from './form';
 

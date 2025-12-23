@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--mantine-color-gray-9);
+  color: var(--mantine-color-dark-0);
+  padding: var(--mantine-spacing-md);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--mantine-spacing-lg);
+  width: 100%;
+  max-width: 450px;
+  box-sizing: content-box;
+
+  @media (min-width: $mantine-breakpoint-xs) {
+    background-color: var(--mantine-color-dark-8);
+    padding: var(--mantine-spacing-xl);
+    border-radius: var(--mantine-radius-md);
+    box-shadow: var(--mantine-shadow-md);
+  }
+}
+
+.form > * {
+  width: 100%;
+}

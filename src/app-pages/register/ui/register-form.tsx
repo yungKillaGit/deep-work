@@ -4,35 +4,37 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, TextInput } from '@mantine/core';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { showError } from '~/shared/lib/notifications';
+import { showError, showSuccess } from '~/shared/lib/notifications';
 import { Form } from '~/shared/ui/form';
 import { authLayoutStyles } from '~/widgets/auth-layout';
-import { signInWithEmail } from '../model/actions';
-import { loginFormSchema, type LoginFormValues } from '../model/form';
+import { signUpWithEmail } from '../model/actions';
+import { registerFormSchema, type RegisterFormValues } from '../model/form';
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   const {
     register,
     formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm({
     defaultValues: {
-      email: '',
-      password: '',
+      email: 'q79199467455@yandex.ru',
+      password: 'admin1',
     },
-    resolver: zodResolver(loginFormSchema),
+    resolver: zodResolver(registerFormSchema),
   });
 
-  const handleSignIn = async (values: LoginFormValues) => {
-    const { error } = await signInWithEmail(values);
+  const handleSignUp = async (values: RegisterFormValues) => {
+    const { error } = await signUpWithEmail(values);
     if (error) {
       showError(error.message);
+    } else {
+      showSuccess('Account created successfully! Please check your email to verify your account.');
     }
   };
 
   return (
-    <Form onSubmit={handleSubmit(handleSignIn)} className={authLayoutStyles.form}>
-      <Form.Header>Sign In to Your Account</Form.Header>
+    <Form onSubmit={handleSubmit(handleSignUp)} className={authLayoutStyles.form}>
+      <Form.Header>Create an Account</Form.Header>
 
       <Form.Fields>
         <TextInput
@@ -52,10 +54,10 @@ export const LoginForm = () => {
 
       <Form.Actions>
         <Button type="submit" variant="filled" loading={isSubmitting}>
-          Sign in
-        </Button>
-        <Button variant="outline" component={Link} href="/register">
           Sign up
+        </Button>
+        <Button variant="outline" component={Link} href="/login">
+          Sign in
         </Button>
       </Form.Actions>
     </Form>
