@@ -31,6 +31,8 @@ const eslintConfig = defineConfig([
       'unicorn/no-useless-undefined': 'off',
       'react/self-closing-comp': 'warn',
       curly: ['error', 'all'],
+      'unicorn/consistent-function-scoping': 'off',
+      'react/no-unescaped-entities': 'off',
     },
   },
 ]);
