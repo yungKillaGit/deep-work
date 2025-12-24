@@ -17,8 +17,8 @@ export const RegisterForm = () => {
     handleSubmit,
   } = useForm({
     defaultValues: {
-      email: 'q79199467455@yandex.ru',
-      password: 'admin1',
+      email: '',
+      password: '',
     },
     resolver: zodResolver(registerFormSchema),
   });

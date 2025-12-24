@@ -1,4 +1,5 @@
 import { Container, Paper, Stack, Text, Title } from '@mantine/core';
+import { SignOutButton } from '~/features/sign-out';
 import { Timer } from '~/shared/ui/timer';
 
 const targetDurationInMinutes = 240;
@@ -28,6 +29,8 @@ export function HomePage() {
             </Text>
           </Stack>
         </Paper>
+
+        <SignOutButton />
       </Stack>
     </Container>
   );

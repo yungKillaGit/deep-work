@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, TextInput } from '@mantine/core';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { showError } from '~/shared/lib/notifications';
 import { Form } from '~/shared/ui/form';
@@ -11,6 +12,7 @@ import { signInWithEmail } from '../model/actions';
 import { loginFormSchema, type LoginFormValues } from '../model/form';
 
 export const LoginForm = () => {
+  const router = useRouter();
   const {
     register,
     formState: { errors, isSubmitting },
@@ -27,6 +29,8 @@ export const LoginForm = () => {
     const { error } = await signInWithEmail(values);
     if (error) {
       showError(error.message);
+    } else {
+      router.push('/');
     }
   };
 
