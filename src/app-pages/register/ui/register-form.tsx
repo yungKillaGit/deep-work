@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, TextInput } from '@mantine/core';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { Path } from '~/shared/config/path';
 import { showError, showSuccess } from '~/shared/lib/notifications';
 import { Form } from '~/shared/ui/form';
 import { authLayoutStyles } from '~/widgets/auth-layout';
@@ -56,7 +57,7 @@ export const RegisterForm = () => {
         <Button type="submit" variant="filled" loading={isSubmitting}>
           Sign up
         </Button>
-        <Button variant="outline" component={Link} href="/login">
+        <Button variant="outline" component={Link} href={Path.LOGIN}>
           Sign in
         </Button>
       </Form.Actions>

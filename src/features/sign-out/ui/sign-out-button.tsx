@@ -1,6 +1,7 @@
 'use client';
 import { Button } from '@mantine/core';
 import { useRouter } from 'next/navigation';
+import { Path } from '~/shared/config/path';
 import { showError } from '~/shared/lib/notifications';
 import { createClient } from '~/shared/lib/supabase/client';
 
@@ -17,7 +18,7 @@ export const SignOutButton = () => {
         if (error) {
           showError(error.message);
         } else {
-          router.push('/login');
+          router.push(Path.LOGIN);
         }
       }}
     >

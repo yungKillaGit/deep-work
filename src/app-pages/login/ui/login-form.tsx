@@ -5,6 +5,7 @@ import { Button, TextInput } from '@mantine/core';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { Path } from '~/shared/config/path';
 import { showError } from '~/shared/lib/notifications';
 import { Form } from '~/shared/ui/form';
 import { authLayoutStyles } from '~/widgets/auth-layout';
@@ -30,7 +31,7 @@ export const LoginForm = () => {
     if (error) {
       showError(error.message);
     } else {
-      router.push('/');
+      router.push(Path.HOME);
     }
   };
 
@@ -58,7 +59,7 @@ export const LoginForm = () => {
         <Button type="submit" variant="filled" loading={isSubmitting}>
           Sign in
         </Button>
-        <Button variant="outline" component={Link} href="/register">
+        <Button variant="outline" component={Link} href={Path.REGISTER}>
           Sign up
         </Button>
       </Form.Actions>
