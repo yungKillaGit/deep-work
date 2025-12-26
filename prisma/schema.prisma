@@ -8,24 +8,24 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(uuid())
-  email    String   @unique
-  name     String?
+  id            String          @id @default(uuid())
+  email         String          @unique
+  name          String?
+  goals         DailyGoal[]
+  progress      DailyProgress[]
   workIntervals WorkInterval[]
-  goals    DailyGoal[]
-  progress DailyProgress[]
 
   @@map("user")
 }
 
 model WorkInterval {
-  id          String   @id @default(uuid())
-  start_time  DateTime
-  end_time    DateTime?
-  duration    Int
-  is_completed Boolean  @default(false)
+  id           String    @id @default(uuid())
+  start_time   DateTime
+  end_time     DateTime?
+  duration     Int
+  is_completed Boolean   @default(false)
   user_id      String
-  user        User      @relation(fields: [user_id], references: [id])
+  user         User      @relation(fields: [user_id], references: [id])
 
   @@map("work_interval")
 }
@@ -34,8 +34,8 @@ model DailyGoal {
   id           String   @id @default(uuid())
   date         DateTime @unique
   goal_minutes Int
-  user_id       String
-  user         User      @relation(fields: [user_id], references: [id])
+  user_id      String
+  user         User     @relation(fields: [user_id], references: [id])
 
   @@map("daily_goal")
 }
@@ -44,8 +44,8 @@ model DailyProgress {
   id            String   @id @default(uuid())
   date          DateTime @unique
   total_minutes Int
-  user_id        String
-  user          User      @relation(fields: [user_id], references: [id])
+  user_id       String
+  user          User     @relation(fields: [user_id], references: [id])
 
   @@map("daily_progress")
 }
