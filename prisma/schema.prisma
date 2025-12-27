@@ -18,10 +18,10 @@ model User {
 
 model WorkInterval {
   id           String    @id @default(uuid())
-  start_time   DateTime
-  end_time     DateTime?
+  start_time   DateTime  @db.Timestamptz
+  end_time     DateTime? @db.Timestamptz
   duration     Int
-  is_completed Boolean   @default(false)
+  state        String    @default("active")
   user_id      String
   user         User      @relation(fields: [user_id], references: [id])
 
@@ -30,7 +30,7 @@ model WorkInterval {
 
 model DailyGoal {
   id           String   @id @default(uuid())
-  date         DateTime @unique
+  date         DateTime @unique @db.Timestamptz
   goal_minutes Int
   user_id      String
   user         User     @relation(fields: [user_id], references: [id])
@@ -40,7 +40,7 @@ model DailyGoal {
 
 model DailyProgress {
   id            String   @id @default(uuid())
-  date          DateTime @unique
+  date          DateTime @unique @db.Timestamptz
   total_minutes Int
   user_id       String
   user          User     @relation(fields: [user_id], references: [id])
