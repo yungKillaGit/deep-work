@@ -9,41 +9,41 @@ datasource db {
 
 model User {
   id            String          @id @default(uuid())
-  goals         DailyGoal[]
-  progress      DailyProgress[]
-  workIntervals WorkInterval[]
+  dailyGoals    DailyGoal[]     @relation("daily_goal")
+  dailyProgress DailyProgress[] @relation("daily_progress")
+  workIntervals WorkInterval[]  @relation("work_interval")
 
   @@map("user")
 }
 
 model WorkInterval {
-  id           String    @id @default(uuid())
-  start_time   DateTime  @db.Timestamptz
-  end_time     DateTime? @db.Timestamptz
-  duration     Int
-  state        String    @default("active")
-  user_id      String
-  user         User      @relation(fields: [user_id], references: [id])
+  id        String    @id @default(uuid())
+  startTime DateTime  @map("start_time") @db.Timestamptz
+  endTime   DateTime? @map("end_time") @db.Timestamptz
+  duration  Int
+  state     String    @default("active")
+  userId    String    @map("user_id")
+  user      User      @relation("work_interval", fields: [userId], references: [id])
 
   @@map("work_interval")
 }
 
 model DailyGoal {
-  id           String   @id @default(uuid())
-  date         DateTime @unique @db.Timestamptz
-  goal_minutes Int
-  user_id      String
-  user         User     @relation(fields: [user_id], references: [id])
+  id          String   @id @default(uuid())
+  date        DateTime @unique @db.Timestamptz
+  goalMinutes Int      @map("goal_minutes")
+  userId      String   @map("user_id")
+  user        User     @relation("daily_goal", fields: [userId], references: [id])
 
   @@map("daily_goal")
 }
 
 model DailyProgress {
-  id            String   @id @default(uuid())
-  date          DateTime @unique @db.Timestamptz
-  total_minutes Int
-  user_id       String
-  user          User     @relation(fields: [user_id], references: [id])
+  id           String   @id @default(uuid())
+  date         DateTime @unique @db.Timestamptz
+  totalMinutes Int      @map("total_minutes")
+  userId       String   @map("user_id")
+  user         User     @relation("daily_progress", fields: [userId], references: [id])
 
   @@map("daily_progress")
 }
